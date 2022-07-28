@@ -1,7 +1,12 @@
-import * as S from './styles'
+import * as S from "./styles";
 
-const CheckTodo = () => (
-    <S.CheckTodoWrapper />
-);
+type CheckTodoProps = {
+  id: string;
+  checkTodo: (id: string) => void;
+};
+
+const CheckTodo = ({ id, checkTodo }: CheckTodoProps) => {
+  return <S.CheckTodoWrapper onClick={() => checkTodo(id)} />
+};
 
 export default CheckTodo;
