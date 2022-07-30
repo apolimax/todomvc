@@ -1,0 +1,42 @@
+import { useState } from "react";
+import { useTodosContext } from "../../context/todosContext";
+
+import * as S from "./styles";
+
+const FILTER_TODOS = ["All", "Active", "Completed"];
+
+const TodoFooter = () => {
+  const { todos, setTodos, countActives } = useTodosContext();
+  const [activeFilter, setActiveFilter] = useState("All");
+
+  const todosLeft = () => todos.length - countActives();
+
+  const clearCompleteds = () => {
+    const updatedTodos = todos.filter((todo) => !todo.completed);
+
+    setTodos(updatedTodos);
+  };
+
+  return (
+    <S.TodoListFooter>
+      <S.ItemsLeft>{todosLeft()} items left</S.ItemsLeft>
+      <S.FilterTodos>
+        {FILTER_TODOS.map((filter, idx) => (
+          <S.FilterItem
+            activeFilter={activeFilter}
+            filter={filter}
+            key={idx}
+            onClick={() => setActiveFilter(filter)}
+          >
+            {filter}
+          </S.FilterItem>
+        ))}
+      </S.FilterTodos>
+      <S.ClearTodos countActives={countActives} onClick={clearCompleteds}>
+        Clear completed
+      </S.ClearTodos>
+    </S.TodoListFooter>
+  );
+};
+
+export default TodoFooter;

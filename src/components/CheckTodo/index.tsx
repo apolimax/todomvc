@@ -6,7 +6,11 @@ type CheckTodoProps = {
 };
 
 const CheckTodo = ({ id, checkTodo }: CheckTodoProps) => {
-  return <S.CheckTodoWrapper onClick={() => checkTodo(id)} />
+  return (
+    <S.CheckTodoWrapper onClick={() => checkTodo(id)}>
+      <img src="./check.svg" alt="check todo" />
+    </S.CheckTodoWrapper>
+  );
 };
 
 export default CheckTodo;

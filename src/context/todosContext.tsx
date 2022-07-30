@@ -11,6 +11,9 @@ type TodosContextType = {
   addTodo: (todo: string) => void;
   removeTodo: (id: string) => void;
   markTodoAsComplete: (id: string) => void;
+  toggleAllTodos: () => void;
+  countActives: () => number;
+  setTodos: (todos: TodoItemProps[]) => void;
 };
 
 type TodosContextProviderProps = {
@@ -25,7 +28,7 @@ const TodosContextProvider = ({ children }: TodosContextProviderProps) => {
   const addTodo = (todo: string) => {
     const newTodo = {
       id: Date.now().toString(),
-      description: todo,
+      description: todo.trim(),
       completed: false,
     };
     setTodos([...todos, newTodo]);
@@ -38,22 +41,52 @@ const TodosContextProvider = ({ children }: TodosContextProviderProps) => {
   };
 
   const markTodoAsComplete = (id: string) => {
-    const updatedTodos = todos.map(todo => {
+    const updatedTodos = todos.map((todo) => {
       if (todo.id === id) {
         return {
-          id: todo.id,
-          description: todo.description,
-          completed: !todo.completed
-        }
+          ...todo,
+          completed: !todo.completed,
+        };
       }
-      return todo
-    })
+      return todo;
+    });
 
     setTodos(updatedTodos);
-  }
+  };
+
+  const toggleAllTodos = () => {
+    const toggledTodos = [...todos].map((todo) => ({
+      ...todo,
+      completed: !todo.completed,
+    }));
+
+    setTodos(toggledTodos);
+  };
+
+  const countActives = () => {
+    const activesTodos = todos.reduce((acc, curr) => {
+      if (curr.completed) {
+        acc++;
+      }
+
+      return acc;
+    }, 0);
+
+    return activesTodos;
+  };
 
   return (
-    <TodosContext.Provider value={{ todos, addTodo, removeTodo, markTodoAsComplete }}>
+    <TodosContext.Provider
+      value={{
+        todos,
+        addTodo,
+        removeTodo,
+        markTodoAsComplete,
+        toggleAllTodos,
+        countActives,
+        setTodos
+      }}
+    >
       {children}
     </TodosContext.Provider>
   );
@@ -62,12 +95,23 @@ const TodosContextProvider = ({ children }: TodosContextProviderProps) => {
 export default TodosContextProvider;
 
 export const useTodosContext = () => {
-  const { todos, addTodo, removeTodo, markTodoAsComplete } = useContext(TodosContext);
+  const {
+    todos,
+    addTodo,
+    removeTodo,
+    markTodoAsComplete,
+    toggleAllTodos,
+    countActives,
+    setTodos
+  } = useContext(TodosContext);
 
   return {
     todos,
     addTodo,
     removeTodo,
-    markTodoAsComplete
+    markTodoAsComplete,
+    toggleAllTodos,
+    countActives,
+    setTodos
   };
 };

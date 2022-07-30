@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import { RemoveTodoWrapper } from "../RemoveTodo/styles";
+import { CheckTodoWrapper } from "../CheckTodo/styles";
 
 export const TodoItemWrapper = styled.li`
-  padding: 5px 8px;
+  padding: 15px 17px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -28,6 +29,17 @@ export const TodoCheckName = styled.div<TodoCheckNameProps>`
   gap: 20px;
 
   p {
-    text-decoration: ${(props) => (props.isCompleted ? "line-through" : "initial")};
+    text-decoration: ${(props) =>
+      props.isCompleted ? "line-through" : "initial"};
+
+    color: ${(props) => (props.isCompleted ? "#d9d9d9" : "#4d4d4d")};
+  }
+
+  ${CheckTodoWrapper} {
+    border-color: ${(props) => (props.isCompleted ? "#4CFF4C" : "#f5f5f5")};
+
+    img {
+      display: ${(props) => (props.isCompleted ? "block" : "none")};
+    }
   }
 `;

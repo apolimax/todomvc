@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import TodosContextProvider from "./context/todosContext";
 import GlobalStyle from "./styles/Global";
@@ -11,11 +12,13 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    {/* <ThemeProvider theme={theme}> */}
-    <TodosContextProvider>
-      <GlobalStyle />
-      <App />
-    </TodosContextProvider>
-    {/* </ThemeProvider> */}
+    <BrowserRouter>
+      {/* <ThemeProvider theme={theme}> */}
+      <TodosContextProvider>
+        <GlobalStyle />
+        <App />
+      </TodosContextProvider>
+      {/* </ThemeProvider> */}
+    </BrowserRouter>
   </React.StrictMode>
 );

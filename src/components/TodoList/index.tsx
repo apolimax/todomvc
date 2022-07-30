@@ -12,11 +12,13 @@ type TodoListProps = {
 };
 
 const TodoList = ({ TodoList }: TodoListProps) => {
-  return <S.TodoListWrapper>
-    {TodoList.map(todo => (
+  return (
+    <S.TodoListWrapper>
+      {TodoList.map((todo) => (
         <TodoItem key={todo.id} {...todo} />
-    ))}
-  </S.TodoListWrapper>;
+      ))}
+    </S.TodoListWrapper>
+  );
 };
 
 export default TodoList;
