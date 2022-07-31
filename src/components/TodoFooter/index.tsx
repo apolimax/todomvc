@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
+
 import { useTodosContext } from "../../context/todosContext";
 
 import * as S from "./styles";
@@ -25,10 +27,10 @@ const TodoFooter = () => {
           <S.FilterItem
             activeFilter={activeFilter}
             filter={filter}
-            key={idx}
             onClick={() => setActiveFilter(filter)}
+            key={idx}
           >
-            {filter}
+            <Link to={`/${filter}`}>{filter}</Link>
           </S.FilterItem>
         ))}
       </S.FilterTodos>

@@ -1,3 +1,4 @@
+import { FormEvent, useState } from "react";
 import { useTodosContext } from "../../context/todosContext";
 import CheckTodo from "../CheckTodo";
 import RemoveTodo from "../RemoveTodo";
@@ -5,15 +6,47 @@ import { TodoItemProps } from "../TodoList";
 import * as S from "./styles";
 
 const TodoItem = ({ ...props }: TodoItemProps) => {
-  const { markTodoAsComplete } = useTodosContext();
+  const [isEditing, setIsEditing] = useState<boolean>(false);
+  const [newDescription, setNewDescription] = useState("");
+  const { markTodoAsComplete, todos, setTodos } = useTodosContext();
+
+  const editTodo = (e: FormEvent) => {
+    e.preventDefault();
+    const updatedTodo = { ...props, description: newDescription };
+
+    const updatedTodos = todos.map((todo) => {
+      if (todo.id === props.id) {
+        return updatedTodo;
+      }
+      return todo;
+    });
+
+    setTodos(updatedTodos);
+    setIsEditing(false);
+  };
 
   return (
     <S.TodoItemWrapper>
       <S.TodoCheckName isCompleted={props.completed}>
-        <CheckTodo id={props.id} checkTodo={markTodoAsComplete} />
-        <p>{props.description}</p>
+        <CheckTodo
+          id={props.id}
+          checkTodo={markTodoAsComplete}
+          isEditingTodo={isEditing}
+        />
+        {isEditing ? (
+          <S.EditTodoForm onSubmit={editTodo}>
+            <input
+              type="text"
+              autoFocus
+              value={newDescription}
+              onChange={(e) => setNewDescription(e.target.value)}
+            />
+          </S.EditTodoForm>
+        ) : (
+          <p onDoubleClick={() => setIsEditing(true)}>{props.description}</p>
+        )}
       </S.TodoCheckName>
-      <RemoveTodo id={props.id} />
+      {!isEditing && <RemoveTodo id={props.id} />}
     </S.TodoItemWrapper>
   );
 };

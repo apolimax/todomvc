@@ -17,12 +17,16 @@ type FilterItemProps = {
   filter: string;
 };
 
-export const FilterItem = styled.a<FilterItemProps>`
+export const FilterItem = styled.div<FilterItemProps>`
   margin: 3px;
-  text-decoration: none;
   padding: 3px 7px;
   border: 1px solid;
   cursor: pointer;
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
 
   &:hover {
     border-color: rgba(175, 47, 47, 0.2);

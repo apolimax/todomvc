@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-export const CheckTodoWrapper = styled.div`
+type CheckTodoWrapperProps = {
+  isEditingTodo: boolean
+}
+
+export const CheckTodoWrapper = styled.div<CheckTodoWrapperProps>`
   width: 35px;
   height: 35px;
   border: 1px solid #f5f5f5;
@@ -15,4 +19,6 @@ export const CheckTodoWrapper = styled.div`
     filter: invert(73%) sepia(73%) saturate(474%) hue-rotate(61deg) brightness(99%) contrast(106%);
     display: none;
   }
+
+  visibility: ${props => props.isEditingTodo ? 'hidden' : 'unset'}
 `;

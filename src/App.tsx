@@ -1,13 +1,13 @@
-import Container from "./components/Container";
-import Header from "./components/Header";
-import TodosContainer from "./components/TodosContainer";
+import { Routes, Route } from "react-router-dom";
+
+import Home from "./pages";
 
 function App() {
   return (
-    <Container>
-      <Header />
-      <TodosContainer />
-    </Container>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/:filter" element={<Home />} />
+    </Routes>
   );
 }
 
