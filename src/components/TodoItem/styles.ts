@@ -45,5 +45,8 @@ export const TodoCheckName = styled.div<TodoCheckNameProps>`
 `;
 
 export const EditTodoForm = styled.form`
-  
+  input {
+    font-size: 1.5rem;
+    color: inherit;
+  }
 `

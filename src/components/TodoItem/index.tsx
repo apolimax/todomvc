@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { useTodosContext } from "../../context/todosContext";
 import CheckTodo from "../CheckTodo";
 import RemoveTodo from "../RemoveTodo";
@@ -7,11 +7,20 @@ import * as S from "./styles";
 
 const TodoItem = ({ ...props }: TodoItemProps) => {
   const [isEditing, setIsEditing] = useState<boolean>(false);
-  const [newDescription, setNewDescription] = useState("");
+  const [newDescription, setNewDescription] = useState(props.description);
   const { markTodoAsComplete, todos, setTodos } = useTodosContext();
+
+  useEffect(() => {
+    document.addEventListener("click", () => setIsEditing(false));
+  }, []);
 
   const editTodo = (e: FormEvent) => {
     e.preventDefault();
+
+    if (!newDescription.trim()) {
+      return;
+    }
+
     const updatedTodo = { ...props, description: newDescription };
 
     const updatedTodos = todos.map((todo) => {

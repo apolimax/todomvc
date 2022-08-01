@@ -12,6 +12,7 @@ export const TodoInputWrapper = styled.form`
     line-height: 1.4em;
     font-size: 1.5rem;
     outline: none;
+    color: #4d4d4d;
 
     &::placeholder {
       font-style: italic;

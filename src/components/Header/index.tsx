@@ -1,10 +1,5 @@
-import { useTodosContext } from '../../context/todosContext';
-import * as S from './styles'
+import * as S from "./styles";
 
-const Header = () => {
-  const {todos} = useTodosContext()
-
-  return <S.Heading onClick={() => console.log('todos', todos)}>todos</S.Heading>;
-};
+const Header = () => <S.Heading>todos</S.Heading>;
 
 export default Header;
