@@ -1,6 +1,6 @@
 # Todo MVC App
 
-This app was developed based on the [Todo MVC project](https://todomvc.com/examples/backbone_require/).
+This app was developed based on the [Todo MVC project](https://todomvc.com/examples/backbone_require/). You can checkout the live app on https://todomvcbywill.netlify.app/
 
 ## Features
 
