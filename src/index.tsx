@@ -4,8 +4,8 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import TodosContextProvider from "./context/todosContext";
 import GlobalStyle from "./styles/Global";
-/* import { ThemeProvider } from "styled-components";
-import theme from "./styles/theme"; */
+import { ThemeProvider } from "styled-components";
+import theme from "./styles/theme";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -13,12 +13,12 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      {/* <ThemeProvider theme={theme}> */}
+      <ThemeProvider theme={theme}>
       <TodosContextProvider>
         <GlobalStyle />
         <App />
       </TodosContextProvider>
-      {/* </ThemeProvider> */}
+      </ThemeProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

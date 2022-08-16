@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 type ToggleTodosWrapperProps = {
   isBold: boolean;
+  showToggle: boolean;
 };
 
 export const ToggleTodosWrapper = styled.div<ToggleTodosWrapperProps>`

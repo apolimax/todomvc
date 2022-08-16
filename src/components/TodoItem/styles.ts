@@ -10,7 +10,7 @@ export const TodoItemWrapper = styled.li`
   font-size: 1.5rem;
   color: #4d4d4d;
 
-  border-bottom: 1px solid #f5f5f5;
+  border-bottom: 1px solid #e6e6e6;
 
   &:hover {
     ${RemoveTodoWrapper} {
@@ -36,7 +36,7 @@ export const TodoCheckName = styled.div<TodoCheckNameProps>`
   }
 
   ${CheckTodoWrapper} {
-    border-color: ${(props) => (props.isCompleted ? "#4CFF4C" : "#f5f5f5")};
+    border-color: ${(props) => (props.isCompleted ? "#4CFF4C" : "#e6e6e6")};
 
     img {
       display: ${(props) => (props.isCompleted ? "block" : "none")};
@@ -49,4 +49,4 @@ export const EditTodoForm = styled.form`
     font-size: 1.5rem;
     color: inherit;
   }
-`
+`;

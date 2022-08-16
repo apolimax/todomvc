@@ -11,7 +11,10 @@ const TodoItem = ({ ...props }: TodoItemProps) => {
   const { markTodoAsComplete, todos, setTodos } = useTodosContext();
 
   useEffect(() => {
-    document.addEventListener("click", () => setIsEditing(false));
+    const listener = () => setIsEditing(false)
+    document.addEventListener("click", listener);
+
+    return () => document.removeEventListener('click', listener)
   }, []);
 
   const editTodo = (e: FormEvent) => {

@@ -4,18 +4,22 @@ import ToggleTodos from "../ToggleTodos";
 import * as S from "./styles";
 
 const TodoInput = () => {
-  const [todo, setTodo] = useState<string>('')
-  const {addTodo} = useTodosContext();
+  const [todo, setTodo] = useState<string>("");
+  const { addTodo, todos } = useTodosContext();
 
   const submitTodo = (e: FormEvent) => {
     e.preventDefault();
     addTodo(todo);
-    setTodo('');
-  }
+    setTodo("");
+  };
 
+  const showBorderBottom = todos.length > 0;
 
   return (
-    <S.TodoInputWrapper onSubmit={submitTodo}>
+    <S.TodoInputWrapper
+      onSubmit={submitTodo}
+      showBorderBottom={showBorderBottom}
+    >
       <ToggleTodos />
       <input
         type="text"

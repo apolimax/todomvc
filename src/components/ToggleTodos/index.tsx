@@ -1,19 +1,23 @@
-import { useState } from "react";
 import { useTodosContext } from "../../context/todosContext";
 import * as S from "./styles";
 
 const ToggleTodos = () => {
-  const [isClicked, setIsClicked] = useState(false)
-  const { toggleAllTodos } = useTodosContext();
+  const { toggleAllTodos, todos, isAllTodosCompleted } = useTodosContext();
 
   const toggle = () => {
     toggleAllTodos();
-    setIsClicked(prevState => !prevState);
-  }
+  };
+
+  const isThereTodoToToggle = !!todos.length;
+  const isArrowBold = isAllTodosCompleted();
 
   return (
-    <S.ToggleTodosWrapper onClick={toggle} isBold={isClicked}>
-      ❯
+    <S.ToggleTodosWrapper
+      onClick={toggle}
+      isBold={isArrowBold}
+      showToggle={isThereTodoToToggle}
+    >
+      {isThereTodoToToggle && "❯"}
     </S.ToggleTodosWrapper>
   );
 };

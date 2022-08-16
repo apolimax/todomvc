@@ -14,6 +14,7 @@ type TodosContextType = {
   toggleAllTodos: () => void;
   countActives: () => number;
   setTodos: (todos: TodoItemProps[]) => void;
+  isAllTodosCompleted: () => boolean;
 };
 
 type TodosContextProviderProps = {
@@ -54,13 +55,32 @@ const TodosContextProvider = ({ children }: TodosContextProviderProps) => {
     setTodos(updatedTodos);
   };
 
-  const toggleAllTodos = () => {
-    const toggledTodos = [...todos].map((todo) => ({
-      ...todo,
-      completed: !todo.completed,
-    }));
+  const isAllTodosCompleted = () => todos.every((todo) => todo.completed);
 
-    setTodos(toggledTodos);
+  const toggleAllTodos = () => {
+    const isAllCompleted = isAllTodosCompleted();
+
+    if (isAllCompleted) {
+      const toggledTodos = todos.map((todo) => ({
+        ...todo,
+        completed: false,
+      }));
+
+      setTodos(toggledTodos);
+    } else {
+      const toggledTodos = todos.map((todo) => {
+        if (!todo.completed) {
+          return {
+            ...todo,
+            completed: true,
+          };
+        } else {
+          return todo;
+        }
+      });
+
+      setTodos(toggledTodos);
+    }
   };
 
   const countActives = () => {
@@ -84,7 +104,8 @@ const TodosContextProvider = ({ children }: TodosContextProviderProps) => {
         markTodoAsComplete,
         toggleAllTodos,
         countActives,
-        setTodos
+        setTodos,
+        isAllTodosCompleted,
       }}
     >
       {children}
@@ -102,7 +123,8 @@ export const useTodosContext = () => {
     markTodoAsComplete,
     toggleAllTodos,
     countActives,
-    setTodos
+    setTodos,
+    isAllTodosCompleted,
   } = useContext(TodosContext);
 
   return {
@@ -112,6 +134,7 @@ export const useTodosContext = () => {
     markTodoAsComplete,
     toggleAllTodos,
     countActives,
-    setTodos
+    setTodos,
+    isAllTodosCompleted,
   };
 };
