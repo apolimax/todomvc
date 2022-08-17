@@ -27,6 +27,10 @@ const TodosContextProvider = ({ children }: TodosContextProviderProps) => {
   const [todos, setTodos] = useState<TodoItemProps[]>([]);
 
   const addTodo = (todo: string) => {
+    if (!todo.trim()) {
+      return;
+    }
+
     const newTodo = {
       id: Date.now().toString(),
       description: todo.trim(),
