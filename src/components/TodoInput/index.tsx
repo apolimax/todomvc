@@ -19,6 +19,7 @@ const TodoInput = () => {
     <S.TodoInputWrapper
       onSubmit={submitTodo}
       showBorderBottom={showBorderBottom}
+      role="form"
     >
       <ToggleTodos />
       <input

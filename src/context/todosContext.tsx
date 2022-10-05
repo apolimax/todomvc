@@ -6,7 +6,7 @@ export type TodoItemProps = {
   completed: boolean;
 };
 
-type TodosContextType = {
+export type TodosContextType = {
   todos: TodoItemProps[];
   addTodo: (todo: string) => void;
   removeTodo: (id: string) => void;
@@ -21,7 +21,7 @@ type TodosContextProviderProps = {
   children: ReactNode;
 };
 
-const TodosContext = createContext({} as TodosContextType);
+export const TodosContext = createContext({} as TodosContextType);
 
 const TodosContextProvider = ({ children }: TodosContextProviderProps) => {
   const [todos, setTodos] = useState<TodoItemProps[]>([]);

@@ -11,6 +11,7 @@ const CheckTodo = ({ id, checkTodo, isEditingTodo }: CheckTodoProps) => {
     <S.CheckTodoWrapper
       isEditingTodo={isEditingTodo}
       onClick={() => checkTodo(id)}
+      role="checkbox"
     >
       <img src="./check.svg" alt="check todo" />
     </S.CheckTodoWrapper>

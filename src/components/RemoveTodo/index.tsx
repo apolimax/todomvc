@@ -9,7 +9,10 @@ const RemoveTodo = ({ id }: RemoveTodoProps) => {
   const { removeTodo } = useTodosContext();
 
   return (
-    <S.RemoveTodoWrapper onClick={() => removeTodo(id)}>
+    <S.RemoveTodoWrapper
+      onClick={() => removeTodo(id)}
+      aria-label="remove todo item"
+    >
       <img src="./removeIcon.svg" alt="remove todo" />
       {/* <svg
         width="24px"
