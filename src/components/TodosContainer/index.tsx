@@ -1,5 +1,5 @@
 import { useTodosContext } from "../../context/todosContext";
-import useFilter from "../../hooks/useFilter";
+import { useFilter } from "../../hooks/useFilter";
 import TodoFooter from "../TodoFooter";
 import TodoInput from "../TodoInput";
 import TodoList from "../TodoList";

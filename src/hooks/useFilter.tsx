@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useTodosContext } from "../context/todosContext";
 
-const useFilter = () => {
+export const useFilter = () => {
   const { filter = "All" } = useParams();
   const { todos } = useTodosContext();
 
@@ -35,5 +35,3 @@ const useFilter = () => {
     isFilterCompleted,
   };
 };
-
-export default useFilter;
