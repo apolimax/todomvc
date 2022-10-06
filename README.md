@@ -32,6 +32,11 @@ npm install
 npm run start
 ```
 
+### Run the tests
+```
+npm run test
+```
+
 ## Technologies
 - [React.js](https://pt-br.reactjs.org/)
 - [Styled Components](https://styled-components.com/)
